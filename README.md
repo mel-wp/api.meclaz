@@ -62,19 +62,19 @@ cd meclaz_pets\Meclaz_Pets_API
 
 Caso a pasta tenha outro nome ou esteja em outro local, ajuste o caminho conforme a organização do repositório.
 
-## 4. Configurando o banco de dados
+## 4. Configurando o banco de dados e criando as tabelas
 
-A API utiliza PostgreSQL e precisa de um banco de dados local para funcionar.
+A API utiliza PostgreSQL para armazenar os dados dos animais, administradores e solicitações de adoção.
 
-Cada pessoa que executar o projeto deverá configurar seu próprio banco de dados.
+Cada pessoa que executar o projeto deverá criar seu próprio banco de dados local.
 
-### Criando o banco
+### 4.1. Criando o banco de dados
 
 1. Abra o pgAdmin.
 2. Conecte-se ao servidor PostgreSQL.
 3. Clique com o botão direito em `Databases`.
 4. Selecione `Create → Database`.
-5. Informe o nome:
+5. No campo de nome, informe:
 
 ```text
 meclaz_pets
@@ -82,23 +82,50 @@ meclaz_pets
 
 6. Clique em `Save`.
 
-### Criando as tabelas
+### 4.2. Localizando o arquivo schema.sql
 
-1. Clique com o botão direito no banco `meclaz_pets`.
-2. Abra o `Query Tool`.
-3. Localize o arquivo `schema.sql`, que está na pasta do projeto.
-4. Abra o arquivo no Query Tool.
-5. Execute os comandos SQL.
+O projeto possui um arquivo chamado `schema.sql`, responsável por criar todas as tabelas necessárias para o funcionamento da API.
 
-O arquivo cria as três tabelas utilizadas pela API:
+Para visualizar os comandos:
+
+1. Abra a pasta `Meclaz_Pets_API` no Visual Studio Code.
+2. Localize o arquivo `schema.sql` na raiz do projeto.
+3. Clique nele para visualizar os comandos SQL.
+
+**Importante:** não é necessário criar as tabelas manualmente. O arquivo `schema.sql` já contém a estrutura correta utilizada pela API.
+
+### 4.3. Executando o schema.sql no pgAdmin
+
+Depois de visualizar o arquivo no VS Code:
+
+1. Abra o pgAdmin.
+2. Localize o banco `meclaz_pets`.
+3. Clique com o botão direito nele.
+4. Selecione `Query Tool`.
+5. No Query Tool, abra o arquivo `schema.sql` que está na pasta do projeto.
+6. Confira se o conteúdo corresponde ao arquivo visualizado no VS Code.
+7. Clique em `Execute` (ícone de raio ou botão ▶).
+
+Após a execução, as seguintes tabelas deverão estar disponíveis:
 
 | Tabela | Finalidade |
 |---|---|
-| `animais` | Armazena os animais cadastrados. |
-| `usuarios` | Armazena as contas dos administradores. |
-| `solicitacoes` | Armazena os pedidos de adoção. |
+| `animais` | Armazena os dados dos animais cadastrados. |
+| `usuarios` | Armazena os administradores e suas informações de acesso. |
+| `solicitacoes` | Armazena os pedidos de adoção realizados pelos interessados. |
 
-**Importante:** execute o `schema.sql` antes de iniciar a API.
+### 4.4. Conferindo as tabelas
+
+Para verificar se tudo foi criado corretamente:
+
+1. No pgAdmin, expanda o banco `meclaz_pets`.
+2. Expanda `Schemas`.
+3. Expanda `public`.
+4. Clique em `Tables`.
+
+Devem aparecer as tabelas `animais`, `usuarios` e `solicitacoes`.
+
+**Atenção:** a estrutura dessas tabelas precisa corresponder ao arquivo `schema.sql`, pois a API utiliza esses nomes e campos nas consultas e operações do banco de dados.
 
 ## 5. Instalando as dependências
 
